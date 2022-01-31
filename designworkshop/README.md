@@ -5,3 +5,5 @@
 
 3a) BoggleBot will provide a platform for real-time word games in a Discord server. The initial focus will be implementing Boggle, with the potential for further language-based games being included.
 3b) Games could be initiated with a text command (i.e. !bg start). After such a command is issued, further chat messages would be read for a specific period of time as participation in the game.
+3c)
+![Screenshot 2022-01-30 223216](https://user-images.githubusercontent.com/54965487/151735255-49b1bcc1-e8ac-4c53-990a-27a8ad7dae6f.png)
