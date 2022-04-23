@@ -4,7 +4,7 @@ import time
 import asyncio
 
 
-token='OTU4NDYzMjU1ODA4OTk5NDcx.YkNsdw.hHPkvXsoXQ-mbFZpkJa1L9ckQvo'
+token='TOKEN'
 
 DEFAULT_TIME = 30
 
