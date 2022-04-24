@@ -185,13 +185,22 @@ class MyClient(discord.Client):
                         else:
                             await self.start_game(message, int(rules[0]), int(rules[1]))
                 # Reads `!bg words` commands
-                if user_message[0:9] == '!bg words':
+                elif user_message[0:9] == '!bg words':
                     # `!bg words` Displays the scoring words of each player from the last game of Boggle
                     if user_message == '!bg words':
                         await self.list_words(message)
                     # `!bg words <player>` Displays the scoring words of the given player from the last game of Boggle
                     else:
                         await self.list_words_player(message, str(message.content)[10:])
+                # `!bg help` Displays a list of commands
+                elif user_message == '!bg help':
+                    await message.channel.send("```Commands:\n\
+                        - !bg help Displays a list of commands\n\
+                        - !bg play Starts a new game of Boggle with the default settings of 3 minutes and a 4x4 board\n\
+                        - !bg play <seconds> <size> Starts a new game of Boggle with the given parameters\n\
+                        - !bg cancel Cancels the current game of Boggle\n\
+                        - !bg words Displays the scoring words of each player from the last game of Boggle\n\
+                        - !bg words <player> Displays the scoring words of the given player from the last game of Boggle```")
 
         # Responds to these commands if there is a game in progress
         elif self.playing:
