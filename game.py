@@ -60,7 +60,7 @@ class Board:
         return output
 
     def contains(self, word):
-        if not twl.check(word):
+        if not twl.check(word) or len(word) < 3:
             return False
             
         def containsHelper(word, letters, prev):

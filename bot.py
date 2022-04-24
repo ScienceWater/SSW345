@@ -9,7 +9,7 @@ import os
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
 
-DEFAULT_TIME = 35
+DEFAULT_TIME = 180
 DEFAULT_SIZE = 4
 
 class MyClient(discord.Client):
