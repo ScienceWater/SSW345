@@ -204,6 +204,9 @@ class MyClient(discord.Client):
                         - !bg cancel Cancels the current game of Boggle\n\
                         - !bg words Displays the scoring words of each player from the last game of Boggle\n\
                         - !bg words <player> Displays the scoring words of the given player from the last game of Boggle```")
+                # Directs message author to `!bg help` if command is not recognized
+                else:
+                    await message.channel.send(user_message + " is not a recognized command. Type `!bg help` for a list of commands.")
 
         # Responds to these commands if there is a game in progress
         elif self.playing:
