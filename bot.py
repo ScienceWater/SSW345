@@ -18,12 +18,14 @@ class MyClient(discord.Client):
         self.playing = False
         self.words = set()
 
-    # Starts a new game
+    # Starts a new game of Boggle
     async def start_game(self, message, sec=DEFAULT_TIME, size = DEFAULT_SIZE):
         self.playing = True
         self.b = Board(size)
         self.players = {}
         await message.channel.send(self.b.__str__())
+
+        # Sends warning messages at certain amounts of time remaining
         if sec > 30:
             await asyncio.sleep(sec-30)
             if self.playing:
@@ -40,6 +42,7 @@ class MyClient(discord.Client):
         else:
             await asyncio.sleep(sec)
         
+        # Ends the game
         if self.playing:
             await self.end_game(message)
 
@@ -55,11 +58,11 @@ class MyClient(discord.Client):
     # Displays a scoreboard (after a game ends)
     async def scoreboard(self, scores, message):
         scoreboard = "Congratulations " + scores[0][1] + "!```"
-        #maxX values to help with formatting of the scoreboard
+        # maxX values to help with formatting of the scoreboard
         maxplacelen = len(str(max(scores ,key=lambda x: len(str(x[0])))[0]))
         maxnamelen = len(max(scores ,key=lambda x: len(x[1]))[1])   
         maxscorelen = len(str(max(scores ,key=lambda x: len(str(x[2])))[2])) 
-        #scoreboard formatting
+        # scoreboard formatting
         for i in scores:
             scoreboard += "\n" +" "*(maxplacelen - len(str(i[0]))) + str(i[0]) + ". " + i[1] + " "*(maxnamelen - len(i[1])) + " |" + " "*(maxscorelen - len(str(i[2]))+ 1) + str(i[2]) + " points"
         scoreboard += "```"
