@@ -198,12 +198,12 @@ class MyClient(discord.Client):
                 # `!bg help` Displays a list of commands
                 elif user_message == '!bg help':
                     await message.channel.send("```Commands:\n\
-                        - !bg help Displays a list of commands\n\
-                        - !bg play Starts a new game of Boggle with the default settings of 3 minutes and a 4x4 board\n\
-                        - !bg play <seconds> <size> Starts a new game of Boggle with the given parameters\n\
-                        - !bg cancel Cancels the current game of Boggle\n\
-                        - !bg words Displays the scoring words of each player from the last game of Boggle\n\
-                        - !bg words <player> Displays the scoring words of the given player from the last game of Boggle```")
+- !bg help : Displays a list of commands\n\
+- !bg play : Starts a new game of Boggle with the default settings of 3 minutes and a 4x4 board\n\
+- !bg play <seconds> <size> : Starts a new game of Boggle with the given parameters\n\
+- !bg cancel : Cancels the current game of Boggle\n\
+- !bg words : Displays the scoring words of each player from the last game of Boggle\n\
+- !bg words <player> : Displays the scoring words of the given player from the last game of Boggle```")
                 # Directs message author to `!bg help` if command is not recognized
                 else:
                     await message.channel.send(user_message + " is not a recognized command. Type `!bg help` for a list of commands.")
