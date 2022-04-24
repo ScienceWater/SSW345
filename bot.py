@@ -25,14 +25,17 @@ class MyClient(discord.Client):
         await message.channel.send(self.b.__str__())
         if sec > 30:
             await asyncio.sleep(sec-30)
-            await message.channel.send("30 seconds remain!")
-            await asyncio.sleep(20)
-            await message.channel.send("10 seconds remain!")
-            await asyncio.sleep(10)
+            if self.playing:
+                await message.channel.send("30 seconds remain!")
+                await asyncio.sleep(20)
+                if self.playing:
+                    await message.channel.send("10 seconds remain!")
+                    await asyncio.sleep(10)
         elif 30 > sec > 10:
             await asyncio.sleep(sec-10)
-            await message.channel.send("10 seconds remain!")
-            await asyncio.sleep(10)
+            if self.playing:
+                await message.channel.send("10 seconds remain!")
+                await asyncio.sleep(10)
         else:
             await asyncio.sleep(sec)
         
@@ -85,7 +88,10 @@ class MyClient(discord.Client):
                 if len(word) > len(longword):
                     longword = word
                     longwordplayer = player
-        return [longword, longwordplayer]
+        if longword != '':
+            return [longword, longwordplayer]
+        else:
+            return ['N/A', 'no one']
     
     def find_most_words(self):
         mostwords = 0
@@ -94,7 +100,10 @@ class MyClient(discord.Client):
             if len(self.players[player][1]) > mostwords:
                 mostwords = len(self.players[player][1])
                 mostwordsplayer = player
-        return [mostwords, mostwordsplayer]
+        if mostwords != 0:
+            return [mostwords, mostwordsplayer]
+        else:
+            return [0, 'no one']
 
     async def list_words(self, message):
         wordlist = ''
@@ -119,8 +128,8 @@ class MyClient(discord.Client):
                     wordlist += word + ", "
             await message.channel.send("```" + wordlist + "```")
     
-    async def add_points(self, message):
-        length = len(message.content)
+    async def add_points(self, message, word):
+        length = len(word)
 
         if length <= 4:
             points = 1
@@ -169,13 +178,13 @@ class MyClient(discord.Client):
                     await self.end_game(message)
             if not message.author.display_name in self.players:
                 self.players[message.author.display_name] = [0,[]]
-            if self.b.contains(user_message):
-                if user_message in self.words:
-                    pass
-                else:
-                    self.words.add(user_message)
-                    await self.add_points(message)
-                    self.players[message.author.display_name][1].append(user_message)
+            word = self.b.contains(user_message)
+            if not word or word in self.words:
+                pass
+            else:
+                self.words.add(word)
+                await self.add_points(message, word)
+                self.players[message.author.display_name][1].append(word)
             await message.delete()
     
 

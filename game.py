@@ -67,7 +67,7 @@ class Board:
                                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'}:
                 word = word[:i] + word[i+1:]
             else: i += 1
-        if not twl.check(word) or len(word) < 3:
+        if not twl.check(word.lower()) or len(word) < 3:
             return False
 
         letters = self.getLetters()
@@ -100,7 +100,7 @@ class Board:
             for j in range(self.__dim):
                 if letters[i][j] == search:
                     if containsHelper(word[increment:], letters[:i] + [letters[i][:j] + [""] + letters[i][j+1:]] + letters[i+1:], (i, j)):
-                        return True         
+                        return word.lower()         
         return False
 
     def getLetters(self):
