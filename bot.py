@@ -3,8 +3,11 @@ import discord
 from game import *
 import time
 import asyncio
+from dotenv import load_dotenv
+import os
 
-token = 'token'
+load_dotenv()
+TOKEN = os.getenv("TOKEN")
 
 DEFAULT_TIME = 35
 DEFAULT_SIZE = 4
@@ -179,4 +182,4 @@ class MyClient(discord.Client):
 
 client = MyClient()
 
-client.run(token)
+client.run(TOKEN)
