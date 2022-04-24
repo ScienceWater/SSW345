@@ -8,6 +8,7 @@
 | Andrew Quinlan | doopydino |
 ___
 ### Commands
+- `!bg help` Displays a list of commands
 - `!bg play` Starts a new game of Boggle with the default settings of 3 minutes and a 4x4 board
 - `!bg play <seconds> <size>` Starts a new game of Boggle with the given parameters
 - `!bg cancel` Cancels the current game of Boggle
