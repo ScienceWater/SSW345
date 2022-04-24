@@ -60,8 +60,17 @@ class Board:
         return output
 
     def contains(self, word):
+        i = 0
+        word = word.upper()
+        while i < len(word):
+            if not word[i] in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',\
+                               'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'}:
+                word = word[:i] + word[i+1:]
+            else: i += 1
         if not twl.check(word) or len(word) < 3:
             return False
+
+        letters = self.getLetters()
             
         def containsHelper(word, letters, prev):
             if not word:
@@ -80,12 +89,7 @@ class Board:
                             return True
             return False
 
-        word = word.upper()
-        letters = self.getLetters()
-
-        if not word:
-            return True
-        elif word[0:2] == "QU":
+        if word[0:2] == "QU":
             increment = 2
             search = "Qu"
         else:
