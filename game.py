@@ -50,13 +50,13 @@ class Board:
         self.__board = board
 
     def __str__(self):
-        output = ""
+        output = "```"
         for row in self.__board:
             for col in row:
                 if col == 'Qu': output += "Qu "
                 else: output += col + "  "
             output += "\n"
-        output = output[:-1]
+        output = output[:-1] + "```"
         return output
 
     def contains(self, word):
