@@ -1,0 +1,1 @@
+launch: python main.py
